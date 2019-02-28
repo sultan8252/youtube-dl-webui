@@ -22,7 +22,8 @@ RUN set -x \
 	&& gosu nobody true
 
 # install ffmpeg
-ENV FFMPEG_URL 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz'
+ENV FFMPEG_URL 'http://nas.oldiy.top/%E5%B7%A5%E5%85%B7/ffmpeg-release-amd64-static.tar.xz'
+#ENV FFMPEG_URL 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz'
 RUN : \
 	&& mkdir -p /tmp/ffmpeg \
 	&& cd /tmp/ffmpeg \
