@@ -1,18 +1,6 @@
 # youtube-dl-webui
 
-Another webui for youtube-dl powered by Flask.
-
-[youtube-dl][1] is a powerful command-line based tool aims to download videos
-from Youtube.com and a few more sites. However, it lacks a manager to control
-and schedule all downloading tasks separately. Also, for people who like me
-prefers to deploy downloading tasks on a home-server, the ability to manage
-tasks remotely comes essentially.
-
-There has been a webui for youtube available on Github, [Youtube-dl-WebUI][2].
-The drawbacks of this project is that it writes in PHP and [youtube-dl][1]
-writes in python. What makes things more worse is that, to use PHP, a web
-server is needly inevitably. This complexes service deployment and makes it not
-very 'light'.
+修复2个错误，支持youtube-dl所支持的全部网站了！
 
 **issues** are welcomed!
 
@@ -59,8 +47,6 @@ write it here for illustrating all valid config options.
 
 # Docker image
 
-There also exists a docker image to easy the deployment. Check [HERE][4] for
-more.
 
 ---
 
