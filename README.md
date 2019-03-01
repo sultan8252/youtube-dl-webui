@@ -4,16 +4,7 @@
 
 # Screenshot
 
-![screenshot1](screen_shot/1.gif)
-
-# Prerequisite
-
-This project is writen under the **python 3.6**, I haven't test the codes in
-any other python versions. So, I hightly recommend you to use python 3.6 to
-avoid any troubles.
-
-Also, we need **[ffmpeg](https://www.ffmpeg.org/download.html)** for post
-processing. Lack of ffmpeg may case some funtions not working.
+![screenshot1](https://github.com/oldiy/youtubedl-webui/raw/master/screen_shot/1.gif)
 
 # Install
 
@@ -51,5 +42,4 @@ write it here for illustrating all valid config options.
 [1]: https://github.com/rg3/youtube-dl
 [2]: https://github.com/avignat/Youtube-dl-WebUI
 [3]: https://github.com/pallets/flask
-[4]: https://hub.docker.com/r/oldiy/youtube-downloader
 
