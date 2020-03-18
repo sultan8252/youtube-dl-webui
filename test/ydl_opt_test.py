@@ -19,11 +19,13 @@ def my_hook(d):
 
 
 ydl_opts = {
-    'noplaylist': 'false',
-    'proxy': 'socks5://127.0.0.1:1080',
+    'noplaylist': False,
+    'proxy': 'socks5://127.0.0.1:1086',
     'format': 'bestaudio/best',
     'logger': MyLogger(),
     'progress_hooks': [my_hook],
+    'nocheckcertificate': True,
+
 }
 with youtube_dl.YoutubeDL(ydl_opts) as ydl:
 #    ydl.download(['http://www.youtube.com/watch?v=BaW_jenozKc'])
