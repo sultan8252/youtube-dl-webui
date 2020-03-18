@@ -31,7 +31,7 @@ RUN : \
         && pip install --no-cache-dir youtube-dl flask \
         && wget -O youtube-dl-webui.zip https://github.com/sultan8252/youtube-dl-webui/archive/master.zip \
         && unzip youtube-dl-webui.zip \
-        && cd youtubedl-webui*/ \
+        && cd youtube-dl-webui*/ \
         && cp -r ./* $YOUTUBE_DL_WEBUI_SOURCE/ \
         && ln -s $YOUTUBE_DL_WEBUI_SOURCE/example_config.json /etc/youtube-dl-webui.json \
         && cd .. && rm -rf youtubedl-webui* \
