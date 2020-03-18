@@ -68,7 +68,7 @@ COPY default_config.json /config.json
 ARG YOUTUBE_DL_WEBUI_SOURCE=/usr/src/youtube_dl_webui
 WORKDIR ${YOUTUBE_DL_WEBUI_SOURCE}
 
-COPY --from=prepare ${YOUTUBE_DL_WEBUI_SOURCE}/* ${YOUTUBE_DL_WEBUI_SOURCE}
+COPY --from=prepare ${YOUTUBE_DL_WEBUI_SOURCE}/* ${YOUTUBE_DL_WEBUI_SOURCE}/
 
 RUN : \
         && pip install --no-cache-dir youtube-dl flask \
