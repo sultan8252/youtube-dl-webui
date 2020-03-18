@@ -1,7 +1,29 @@
-FROM python:3.6-slim
+FROM python:3.6-slim as prepare
 
+# install ffmpeg
+#ENV FFMPEG_URL 'http://nas.oldiy.top/%E5%B7%A5%E5%85%B7/ffmpeg-release-amd64-static.tar.xz'
+ARG FFMPEG_URL=https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz
+RUN : set -x \
+        && buildDeps=' \
+                unzip \
+                ca-certificates \
+                dirmngr \
+                wget \
+                xz-utils \
+                gpg \
+                gpg-agent' \
+        && apt-get update && apt-get install -y --no-install-recommends $buildDeps \
+        && mkdir -p /tmp/ffmpeg \
+        && cd /tmp/ffmpeg \
+        && wget -O ffmpeg.tar.xz "${FFMPEG_URL}" \
+        && tar -xf ffmpeg.tar.xz -C . --strip-components 1 \
+        && cp ffmpeg ffprobe qt-faststart /usr/bin \
+        && cd .. \
+        && rm -fr /tmp/ffmpeg
+
+FROM python:3.6-slim as youtube-dl-webui
 # grab gosu for easy step-down from root
-ENV GOSU_VERSION 1.11
+ARG GOSU_VERSION=1.11
 RUN set -x \
         && buildDeps=' \
                 unzip \
@@ -12,8 +34,8 @@ RUN set -x \
                 gpg \
                 gpg-agent' \
         && apt-get update && apt-get install -y --no-install-recommends $buildDeps \
-        && wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture)" \
-        && wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture).asc" \
+        && wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-$(dpkg --print-architecture)" \
+        && wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-$(dpkg --print-architecture).asc" \
         && export GNUPGHOME="$(mktemp -d)" \
         #&& gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
         && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
@@ -49,6 +71,9 @@ RUN : \
         && apt-get purge -y --auto-remove wget unzip dirmngr \
         && rm -fr /var/lib/apt/lists/*
 
+COPY --from=prepare /usr/bin/ffmpeg /usr/bin
+COPY --from=prepare /usr/bin/ffprobe /usr/bin
+COPY --from=prepare /usr/bin/qt-faststart /usr/bin
 COPY docker-entrypoint.sh /usr/local/bin
 COPY default_config.json /config.json
 
