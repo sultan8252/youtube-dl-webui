@@ -17,7 +17,7 @@ RUN : \
         && apt-get install -y --no-install-recommends $buildDeps \
         && mkdir -p /tmp/ffmpeg \
         && cd /tmp/ffmpeg \
-        && wget -O ffmpeg.tar.xz "${FFMPEG_URL}" \
+        && wget -O ffmpeg.tar.xz ${FFMPEG_URL} \
         && tar -xf ffmpeg.tar.xz -C . --strip-components 1 \
         && cp ffmpeg ffprobe qt-faststart /usr/bin \
         && cd .. \
