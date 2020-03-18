@@ -113,9 +113,9 @@ class Worker(Process):
                 if self.first_run:
                     info_dict = ydl.extract_info(self.url, download=False)
 
-                    #  self.logger.debug(json.dumps(info_dict, indent=4))
+                    #   self.logger.debug(json.dumps(info_dict, indent=4))
 
-                    info_dict['description'] = info_dict['description'].replace('\n', '<br />');
+                    #   info_dict['description'] = info_dict['description'].replace('\n', '<br />');
                     payload = {'tid': self.tid, 'data': info_dict}
                     self.msg_cli.put('info_dict', payload)
 
