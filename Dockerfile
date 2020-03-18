@@ -81,6 +81,7 @@ WORKDIR ${YOUTUBE_DL_WEBUI_SOURCE}
 COPY --from=prepare ${YOUTUBE_DL_WEBUI_SOURCE}/* ${YOUTUBE_DL_WEBUI_SOURCE}
 
 RUN : \
+        && pip install --no-cache-dir youtube-dl flask
         && chmod +x /usr/local/bin/docker-entrypoint.sh \
         && ln -s $YOUTUBE_DL_WEBUI_SOURCE/example_config.json /etc/youtube-dl-webui.json \
         && chmod +x /usr/bin/ffmpeg \
