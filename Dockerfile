@@ -3,7 +3,8 @@ FROM python:3.6-slim as prepare
 # install ffmpeg
 #ENV FFMPEG_URL 'http://nas.oldiy.top/%E5%B7%A5%E5%85%B7/ffmpeg-release-amd64-static.tar.xz'
 ARG FFMPEG_URL=https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz
-RUN : set -x \
+RUN : \
+        && set -x \
         && buildDeps=' \
                 unzip \
                 ca-certificates \
@@ -12,7 +13,8 @@ RUN : set -x \
                 xz-utils \
                 gpg \
                 gpg-agent' \
-        && apt-get update && apt-get install -y --no-install-recommends $buildDeps \
+        && apt-get update \
+        && apt-get install -y --no-install-recommends $buildDeps \
         && mkdir -p /tmp/ffmpeg \
         && cd /tmp/ffmpeg \
         && wget -O ffmpeg.tar.xz "${FFMPEG_URL}" \
