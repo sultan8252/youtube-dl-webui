@@ -43,7 +43,7 @@ FROM python:3.6-slim as youtube-dl-webui
 ENV GOSU_VERSION 1.11
 RUN set -x \
         && buildDeps=' \
-                ca-certificates \ENV
+                ca-certificates \
                 dirmngr \
                 wget \
                 gpg \
